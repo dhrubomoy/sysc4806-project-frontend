@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
- 
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { TokenStorageService } from '../../services/auth/token-storage.service';
 import { SignInInfo } from '../../services/auth/sign-in-info';
@@ -17,7 +17,11 @@ export class SignInComponent implements OnInit {
   roles: string[] = [];
   private signInInfo: SignInInfo;
  
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(
+    private authService: AuthService, 
+    private tokenStorage: TokenStorageService,
+    private router: Router
+  ) { }
  
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -36,7 +40,8 @@ export class SignInComponent implements OnInit {
         this.isSignInFailed = false;
         this.isSignedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
-        this.reloadPage();
+        window.location.reload();
+        this.router.navigateByUrl('/home');
       },
       error => {
         console.log(error);
@@ -44,9 +49,5 @@ export class SignInComponent implements OnInit {
         this.isSignInFailed = true;
       }
     );
-  }
- 
-  reloadPage() {
-    window.location.reload();
   }
 }
