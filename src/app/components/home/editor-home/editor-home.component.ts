@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EditorHomeComponent implements OnInit {
 
-  private articlesData: any[] = [];
+  articlesData: any[] = [];
   private articles: Article[];
   private reviewers: Reviewer[];
   source: LocalDataSource = new LocalDataSource();

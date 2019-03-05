@@ -12,7 +12,7 @@ import { ArticleUtil } from '../../../utils/article-util';
 })
 export class SubmitterHomeComponent implements OnInit {
 
-  private submittedArticles = [];
+  submittedArticles = [];
   private articleTitle: string = '';
   private articleText: string = '';
   private dialogRef: any;

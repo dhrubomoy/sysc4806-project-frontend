@@ -14,10 +14,10 @@ const SIGNOUT = 'Sign Out'
 })
 export class AppComponent implements OnInit {
   
-
+  isSignedIn: boolean;
+  router: Router;
   private roles: string[];
   private authority: string;
-  private isSignedIn: boolean;
   private items: any = [
     { title: HOME },
     { title: SIGNOUT },
@@ -26,9 +26,10 @@ export class AppComponent implements OnInit {
   constructor(
     private token: TokenStorageService,
     private nbMenuService: NbMenuService, 
-    private router: Router
+    private router_: Router
   ) {
     this.isSignedIn = false;
+    this.router = router_;
   }
 
   menuItemClicked() {
